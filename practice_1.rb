@@ -32,3 +32,16 @@ describe Meme do
     end
   end
 end
+
+def a(a)
+  a
+end
+
+require "minitest/autorun"
+
+describe 'test' do
+  it 'test' do
+    assert a(1), 1
+    assert a('a'), 'a'
+  end
+end
