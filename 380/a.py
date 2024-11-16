@@ -1,4 +1,5 @@
 # python -m doctest -v a.py
+from pprint import pp as pp
 
 def cyclic(n):
   '''
@@ -16,8 +17,9 @@ def cyclic(n):
 
 def main():
     import sys
-    input = sys.stdin.read().rstrip()
-    ret = cyclic(input)
+    lines = sys.stdin.read().split()
+    pp(lines)
+    ret = cyclic(lines[0])
     print(ret)
 
 
