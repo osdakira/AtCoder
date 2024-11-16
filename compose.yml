@@ -1,8 +1,14 @@
 version: '3.8'
 services:
-  app:
+  ruby:
     image: ruby:3.2.6-alpine3.19
     volumes:
       - .:/myapp
     working_dir: /myapp      
+    command: /bin/ash
+  python:
+    image: python:3.13.0-alpine3.20
+    volumes:
+      - .:/myapp
+    working_dir: /myapp
     command: /bin/ash
