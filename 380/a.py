@@ -1,25 +1,48 @@
+'''
+6 桁の正整数
+N が与えられます。
+この整数が以下の条件を全て満たすか判定してください。
+
+N の各桁のうち、
+1 は丁度
+1 つである。
+N の各桁のうち、
+2 は丁度
+2 つである。
+N の各桁のうち、
+3 は丁度
+3 つである。
+'''
+
 # python -m doctest -v a.py
-from pprint import pp as pp
+# from pprint import pp as pp
 
-def cyclic(n):
+def match(n):
   '''
-  >>> cyclic('379')
-  '793 937'
+  >>> match('123233')
+  'Yes'
 
-  >>> cyclic('919')
-  '199 991'
+  >>> match('123234')
+  'No'
+
+  >>> match('323132')
+  'Yes'
+
+  >>> match('500000')
+  'No'
   '''
-  a = list(n)
-  b = a[1:] + a[0:1]
-  c = b[1:] + b[0:1]
-  return f'{''.join(b)} {''.join(c)}'
+  l = list(n)
+  if l.count('1') == 1 and l.count('2') == 2 and l.count('3') == 3:
+     return 'Yes'
+  else:
+     return 'No'
 
 
 def main():
     import sys
     lines = sys.stdin.read().split()
-    pp(lines)
-    ret = cyclic(lines[0])
+    # pp(lines)
+    ret = match(lines[0])
     print(ret)
 
 
