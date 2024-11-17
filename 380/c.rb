@@ -1,19 +1,14 @@
 # ruby -d c.rb -v
 
 def move(k, s)
-  segments = s.chars.chunk_while {|a, b| a == b }.to_a
+  segs = s.chars.chunk_while { |a, b| a == b }.to_a
 
-  one_index = 0
-  seg_index = segments.each_with_index do |seg, i|
-    if seg[0] == '1'
-      one_index += 1
-      if one_index == k - 1
-        break i
-      end
-    end
-  end
-  replaced = segments[0..seg_index] + segments[seg_index+2..seg_index+2] + segments[seg_index+1..seg_index+1] + segments[seg_index+3..-1]
-  replaced.join
+  c = 0
+  i = segs.index { |x| c += 1 if x[0] == '1'; c == k - 1 }
+
+  segs[i+1], segs[i+2] = segs[i+2], segs[i+1]
+
+  segs.join
 end
 
 def main(input)
