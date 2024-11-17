@@ -1,3 +1,5 @@
+# ruby -d c.rb -v
+
 def move(k, s)
   segments = s.chars.chunk_while {|a, b| a == b }.to_a
 
@@ -21,25 +23,30 @@ def main(input)
   move(k, s)
 end
 
-lines = ARGF.read
-puts main(lines)
+require "minitest"
+require "minitest/spec"
 
-# require "minitest/autorun"
+describe 'test' do
+  it 'test1' do
+    i = <<~INPUT
+      15 3
+      010011100011001
+    INPUT
+    _(main(i)).must_equal '010011111000001'
+  end
 
-# describe 'test' do
-#   it 'test1' do
-#     i = <<~INPUT
-#       15 3
-#       010011100011001
-#     INPUT
-#     _(main(i)).must_equal '010011111000001'
-#   end
+  it 'test2' do
+    i = <<~INPUT
+      10 2
+      1011111111
+    INPUT
+    _(main(i)).must_equal '1111111110'
+  end
+end
 
-#   it 'test2' do
-#     i = <<~INPUT
-#       10 2
-#       1011111111
-#     INPUT
-#     _(main(i)).must_equal '1111111110'
-#   end
-# end
+if $DEBUG
+  Minitest.autorun
+else
+  lines = ARGF.read
+  puts main(lines)
+end
