@@ -58,3 +58,6 @@ build-iPhoneSimulator/
 
 test.txt
 *.js
+templates
+node_modules
+package-lock.json
